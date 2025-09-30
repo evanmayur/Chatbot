@@ -174,7 +174,7 @@ if "chat_sessions" not in st.session_state:
     st.session_state.current_session = "Session 1"
 
 if "model_name" not in st.session_state:
-    st.session_state.model_name = "gemini-pro"
+    st.session_state.model_name = "gemini-flash-latest"
 
 if "temperature" not in st.session_state:
     st.session_state.temperature = 0.7
@@ -259,13 +259,13 @@ with st.sidebar:
         )
         
         with st.expander("⚙️ Advanced Settings"):
-            if st.session_state.model_name not in ["gemini-pro"]:
-                st.session_state.model_name = "gemini-pro"
+            if st.session_state.model_name not in ["gemini-flash-latest", "gemini-pro-latest", "gemini-pro"]:
+                st.session_state.model_name = "gemini-flash-latest"
             model_name = st.selectbox(
                 "Model",
-                ["gemini-pro"],
-                index=0,
-                help="Only gemini-pro is available."
+                ["gemini-flash-latest", "gemini-pro-latest", "gemini-pro"],
+                index=["gemini-flash-latest", "gemini-pro-latest", "gemini-pro"].index(st.session_state.model_name),
+                help="Flash is faster, Pro is more capable"
             )
             
             temperature = st.slider(
